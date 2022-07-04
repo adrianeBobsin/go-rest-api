@@ -1,0 +1,182 @@
+definitions:
+  models.Client:
+    properties:
+      email:
+        type: string
+      name:
+        description: gorm.Model
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  models.Contacts:
+    properties:
+      contacts:
+        items:
+          properties:
+            Cellphone:
+              type: string
+            Id_Cliente:
+              type: integer
+            Name:
+              type: string
+          type: object
+        type: array
+    type: object
+  models.ContactsList:
+    properties:
+      contacts:
+        items:
+          properties:
+            Cellphone:
+              type: string
+            Name:
+              type: string
+          type: object
+        type: array
+    type: object
+  models.Token:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /mysql/client/contacts:
+    post:
+      consumes:
+      - application/json
+      description: Create many clients contacts with one token
+      parameters:
+      - description: Contact Data
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/models.ContactsList'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Contacts'
+      summary: Create contacts
+      tags:
+      - Contacts
+  /mysql/client/create:
+    post:
+      consumes:
+      - application/json
+      description: Create clients
+      parameters:
+      - description: Client Data
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Client'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Client'
+      summary: Create client
+      tags:
+      - Clients
+  /mysql/token:
+    post:
+      consumes:
+      - application/json
+      description: Generate token
+      parameters:
+      - description: Token Data
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Token'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Token'
+      summary: Generate token
+      tags:
+      - Token
+  /postgresql/client/contacts:
+    post:
+      consumes:
+      - application/json
+      description: Create many clients contacts with one token
+      parameters:
+      - description: Contact Data
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/models.ContactsList'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Contacts'
+      summary: Create contacts
+      tags:
+      - Contacts
+  /postgresql/client/create:
+    post:
+      consumes:
+      - application/json
+      description: Create clients
+      parameters:
+      - description: Client Data
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Client'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Client'
+      summary: Create client
+      tags:
+      - Clients
+  /postgresql/token:
+    post:
+      consumes:
+      - application/json
+      description: Generate token
+      parameters:
+      - description: Token Data
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/models.Token'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Token'
+      summary: Generate token
+      tags:
+      - Token
+swagger: "2.0"
